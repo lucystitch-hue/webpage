@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+    <link rel="stylesheet" type="text/css" th:href="@{/fontawesome-free-5.15.3-web/css/fontawesome.min.css}">
+    <script defer th:src="@{/fontawesome-free-5.15.3-web/js/all.js}"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css} "/>
+    <link th:href="@{/css/login.css}" rel="stylesheet"/>
+    <title>Login Horse Racing</title>
+</head>
+<body>
+<div class="container">
+    <div class="row d-flex justify-content-center ">
+        <div class="shadow col-md-5 border ps-4 pe-4 row">
+
+            <div class="d-grid mb-2 mt-5 mb-4">
+                <img class="logo mx-auto mb-3" th:src="@{/image/logo.png}">
+                <h5 class="form-signin-heading mx-auto"><b>[(${header})]</b></h5>
+            </div>
+
+            <div th:if="${param.error}" class="alert alert-danger">
+                	Please enter the correct ID and password.
+            </div>
+
+            <form class="form-signin d-grid gap-2 col-md-8 mx-auto mb-5" id="login" onsubmit="return checkForBlankAdmin(event)" method="POST" th:action="@{/admin/login}">
+                <b><label for="username"> ID</label></b>
+                <input type="text" id="username" th:name="@{username}" class="form-control shadow-none">
+
+                <b><label for="password"> Password</label></b>
+                <input type="password" id="password" th:name="@{password}" class="form-control shadow-none"
+                        required>
+
+                <button class="btn btn-primary mb-3 mt-5 mx-auto"  type="submit"><b>Login</b></button>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+</body>
+<script th:src="@{/js/body.js}"></script>
+</html>

@@ -1,0 +1,34 @@
+<div th:fragment="menu" class="col-md-2 pe-0 ps-0 d-grid shadow">
+
+    <ul class="nav flex-column">
+        <li class="nav-item mt-4 mb-5 p-0 d-grid">
+            <img class="logo mx-auto mb-3" th:src="@{/image/logo.png}">
+            <p class="form-signin-heading mx-auto text-center"><b>Horse Racing App Management</b></p>
+        </li>
+
+        <li class="nav-item mt-5 p-0 d-grid">
+            <a th:href="@{/admin/user}" class="p-3 a">
+                User Management
+            </a>
+        </li>
+
+        <li class="nav-itemp-0 d-grid">
+            <a th:href="@{/admin/csv-download}" class="p-3 b">
+                CSV Download
+            </a>
+        </li>
+
+        <li class="nav-item p-0 d-grid">
+            <a th:href="@{/admin/temporaryUser}" class="p-3 c">
+                Temporary User Registration/Deletion
+            </a>
+        </li>
+        
+        <li class="nav-item p-0 d-grid">
+            <a th:href="@{/admin/deleteLog}" class="p-3 c">
+                Temporary User Deletion Log
+            </a>
+        </li>
+        
+    </ul>
+</div>

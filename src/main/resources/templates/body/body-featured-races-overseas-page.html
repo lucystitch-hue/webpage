@@ -1,0 +1,85 @@
+<div th:fragment="body" class="col-md-10 p-0 m-0">
+	<th:block th:insert="~{fragment/fragment-header-notification :: header}"></th:block>
+	<div class="p-5 pb-4">
+	<a th:href="@{/notification/featured-races-overseas/newRegistration}" class="buttonFeatured">New Registration</a>
+	</div>
+
+	<div class="p-5 pb-3 pt-3">
+		<table id="data" class="table table-hover shadow-sm border pb-5 m-0">
+			<thead th:if="${countA09 >=0}">
+				<tr>
+					<th class="text-center" scope="col">Event Date</th>
+					<th class="text-center" sscope="col">Race Name</th>
+					<th class="text-center" scope="col">Grade</th>
+					<th class="text-center" scope="col">Display Start Date/Time</th>
+					<th class="text-center" scope="col">Display End Date/Time</th>
+					<th class="text-center" scope="col">Last Updated</th>
+				</tr>
+			</thead>
+			<tbody id="myTable" style="background: white;">
+				<tr th:each="i,state:${listA09}">
+
+					<td th:onclick="'window.location=\'' + @{/notification/featured-races-overseas/{id}/{name}(id=${i.primaryKeys.kaisaiYmd},name=${i.raceName})} + '\''" style="cursor: pointer; padding: 1%;">
+					[(${i.primaryKeys.kaisaiYmd})]
+					</td>
+
+					<td th:onclick="'window.location=\'' + @{/notification/featured-races-overseas/{id}/{name}(id=${i.primaryKeys.kaisaiYmd},name=${i.raceName})} + '\''" style="cursor: pointer; padding: 1%;">
+					[(${i.primaryKeys.raceName})]
+					</td>
+
+					<td th:onclick="'window.location=\'' + @{/notification/featured-races-overseas/{id}/{name}(id=${i.primaryKeys.kaisaiYmd},name=${i.raceName})} + '\''" style="cursor: pointer; padding: 1%;">
+					[(${i.grd})]
+					</td>
+
+					<td th:onclick="'window.location=\'' + @{/notification/featured-races-overseas/{id}/{name}(id=${i.primaryKeys.kaisaiYmd},name=${i.raceName})} + '\''" style="cursor: pointer; padding: 1%;">
+					[(${i.startDate})]
+					</td>
+
+					<td th:onclick="'window.location=\'' + @{/notification/featured-races-overseas/{id}/{name}(id=${i.primaryKeys.kaisaiYmd},name=${i.raceName})} + '\''" style="cursor: pointer; padding: 1%;">
+					[(${i.endDate})]
+					</td>
+
+					<td th:onclick="'window.location=\'' + @{/notification/featured-races-overseas/{id}/{name}(id=${i.primaryKeys.kaisaiYmd},name=${i.raceName})} + '\''" style="cursor: pointer; padding: 1%;">
+					[(${i.updateTimestamp})]
+					</td>
+				</tr>
+				
+			</tbody>
+		</table>
+		<nav id="pageable" class=" d-flex justify-content-end pt-3"
+			aria-label="Page navigation example"
+			style="background: white; border: 1px solid gainsboro;">
+			<ul class="pagination justify-content-center border rounded-3 me-5">
+				<li th:if="${currentPage >0}"
+					class="page-item"><a style="color: #007564;"
+					th:href="@{/notification/featured-races-overseas}"
+					th:class="${currentPage == 0 ? 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none active' : 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none'}">
+						≪ </a></li>
+				<li class="page-item" th:if="${currentPage > 2}"><span
+					class="page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none">...</span>
+				</li>
+				<th:block th:each="pageNumber : ${pageNumbers}"
+					th:if="${pageNumber >= currentPage - 1 and pageNumber <= currentPage + 3}">
+					<li th:class="${pageNumber == currentPage + 1 ? 'page-item active' : 'page-item'}"><a
+						th:href="@{/notification/featured-races-overseas(page=${pageNumber})}"
+						th:class="${pageNumber == currentPage + 1 ? 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none active' : 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none'}">
+							[(${pageNumber})] </a></li>
+				</th:block>
+				<li class="page-item" th:if="${currentPage + 3 < totalPages}">
+					<span
+					class="page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none">...</span>
+				</li>
+				<li class="${currentPage == totalPages - 1 ? 'page-item active' : 'page-item'}" th:if="${currentPage + 3 < totalPages}">
+					<a th:href="@{/notification/featured-races-overseas(page=${totalPages})}"
+					th:class="${currentPage == totalPages - 1 ? 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none active' : 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none'}">
+						[(${totalPages})] </a>
+				</li>
+				<li class="page-item"><a th:href="@{/notification/featured-races-overseas(page=${currentPage}+2)}"
+					class="page-link border-0 m-2 me-0 p-0 ps-2 pe-3 shadow-none"
+					style="color: #007564;"
+					th:if="${currentPage < totalPages - 1}"> ≫ </a></li>
+			</ul>
+		</nav>
+	</div>
+
+</div>

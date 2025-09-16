@@ -1,0 +1,172 @@
+<div th:fragment="body" class="col-md-10 p-0 m-0">
+    <th:block th:insert="~{fragment/fragment-header-notification :: header}"></th:block>
+
+    <div class="col-md-12 a p-0 pe-5 ps-5 m-0">
+        <div class="col-md-12 pt-5">
+            <div class="d-flex align-items-end flex-column p-0 pt-2 row">
+                <div class="container p-0 col-md-12 ps-3">
+                    <div class="row row-cols-1">
+                        <div class="radioButton mt-3">
+                            <label class="form-check-label">
+                                Notification Category
+                            </label>
+                        </div>
+
+                        <div class="row row-cols-4">
+                            <div class="col-auto m-2 ms-3">
+                                <input class="form-check-input" type="radio" checked form="sendNotification" th:name="catalog" th:value="90"
+                                       id="cate1">
+                                <label class="form-check-label" for="cate1">
+                                    This Week's Highlights
+                                </label>
+                            </div>
+                            <div class="col-auto m-2 ms-3">
+                                <input class="form-check-input" type="radio" form="sendNotification" th:name="catalog" th:value="91"
+                                       id="cate2">
+                                <label class="form-check-label" for="cate2">
+                                    Special Offers
+                                </label>
+                            </div>
+                            <div class="col-auto m-2 ms-3">
+                                <input class="form-check-input" type="radio" form="sendNotification" th:name="catalog" th:value="62"
+                                       id="cate3">
+                                <label class="form-check-label" for="cate3">
+                                    All Users
+                                </label>
+                            </div>
+                        </div>
+                        <!--                        -->
+                        <div class="radioButton mt-4">
+                            <label class="form-check-label">
+                                Filter Conditions
+                            </label>
+                        </div>
+                        <div class="row row-cols-4 mb-5">
+
+                            <div class="col-auto m-2 ms-3">
+                                <input class="form-check-input" type="radio" checked form="sendNotification" th:name="condition" th:value="0"
+                                       id="target1">
+                                <label class="form-check-label" for="target1">
+                                    ALL
+                                </label>
+                            </div>
+
+                            <div class="col-auto m-2 ms-3">
+                                <input class="form-check-input" type="radio" form="sendNotification" th:name="condition" th:value="1"
+                                       id="target2">
+                                <label class="form-check-label" for="target2">
+                                    Test Users
+                                </label>
+                            </div>
+
+                            <div class="col-auto m-2 ms-3">
+                                <input class="form-check-input" type="radio" form="sendNotification" th:name="condition" th:value="2"
+                                       id="target3">
+                                <label class="form-check-label" for="target3">
+                                    CSV Import
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="inputCSV" class="row row-cols-3 mb-5 text-center align-items-center">
+                            <div class="col-auto">
+                                <label class="form-check-label">
+                                    Import CSV Upload
+                                </label>
+                            </div>
+                            <div class="col csvLoad">
+                                <input onchange="handleFileSelect(event);" form="sendNotification" accept="text/csv" id="myFile" th:name="myFile" type="file" style="display: none;">
+                                <input type="button" class="csvLoad" value="Upload" onclick="document.getElementById('myFile').click();">
+                            <label id="countUser" class="form-check-label ms-3">○○ items</label>
+                            </div>
+                            
+                            <div class="col-9 text-center">
+                                <div id="errorFileInput" class="col-auto text-danger"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 p-5 mx-auto shadow pt-0">
+            <div class="col-md-12 p-0 mx-auto">
+                <div class="btn-group col-md-12 ms-4 dropstart">
+                    <button type="button" id="toggleButton" class="buttondrop ms-auto" aria-expanded="false">
+                        ...
+                    </button>
+                    <ul class="dropdown-menu p-0" id="scrollHideElement" style="position: absolute;inset: 0px 0px auto auto;margin: 0px;transform: translate(-185.609px, 400px);" >
+                        <li class="itemTemplate text-center">
+                            <p class="dropdown-item">
+                            Template
+                            </p>
+                        </li>
+                        <li class="itemTemplate" th:each="i : ${list}">
+                            <a class="dropdown-item" th:href="@{/notification/notification-management/{templateId}(templateId=${i.unyonum})}">
+                                [[${i.titleFormat}]]
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="d-flex flex-column bd-highlight m-0 mb-4" th:if="${template != null}">
+                    <div class="mt-3">
+                        <label>Title</label>
+                        <input id="titleInput" oninput="limitInputLength()" form="sendNotification" th:value="${template.titleFormat}" th:name="chgTitle" type="text"
+                               class="form-control shadow-none rounded-0 border border-secondary" >
+                    </div>
+                    <div class="mt-5">
+                        <label>Content</label>
+                        <textarea id="contentInput" oninput="limitInputLength()" form="sendNotification" th:text="${template.teikeiFormat}" th:name="chgText"
+                                  class="form-control shadow-none rounded-0 border border-secondary"
+                                  rows="7"></textarea>
+                    </div>
+                    <div class="mt-5">
+                        <label>Link URL</label>
+                        <input form="sendNotification" id="urlInput" oninput="limitInputLength()" th:value="${template.linkUrl}" type="url" th:name="linkUrl" 
+                               class="form-control shadow-none rounded-0 border border-secondary" >
+                    </div>
+                    <div class="mt-5">
+                        <label>Expiration Date</label>
+                        <input id="dateInput" th:min="${minTime}" th:max="${maxTime}" form="sendNotification" th:name="hapyoTime" type="datetime-local"
+                               class="form-control shadow-none rounded-0 border border-secondary">
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column bd-highlight m-0 mb-4" th:if="${template == null}">
+                    <div class="mt-3">
+                        <label>Title</label>
+                        <input id="titleInput" form="sendNotification" th:name="chgTitle" type="text"
+                               class="form-control shadow-none rounded-0 border border-secondary" oninput="limitInputLength()">
+                    </div>
+                    <div class="mt-5">
+                        <label>Content</label>
+                        <textarea id="contentInput" form="sendNotification" th:name="chgText"
+                                  class="form-control shadow-none rounded-0 border border-secondary" value=""
+                                  rows="7" oninput="limitInputLength()"></textarea>
+                    </div>
+                    <div class="mt-5">
+                        <label>Link URL</label>
+                        <input form="sendNotification" id="urlInput" th:name="linkUrl" type="url" oninput="limitInputLength()"
+                               class="form-control shadow-none rounded-0 border border-secondary" >
+                    </div>
+                    <div class="mt-5">
+                        <label>Expiration Date</label>
+                        <input id="dateInput" th:min="${minTime}" th:max="${maxTime}" form="sendNotification" th:name="hapyoTime" type="datetime-local"
+                               class="form-control shadow-none rounded-0 border border-secondary">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 d-flex justify-content-center gap-5 a">
+            <a th:href="@{/notification/notification-management}" class="cancelButton shadow col-auto">Clear</a>
+          
+            <form hidden id="sendNotification" autocomplete="on" th:object="${notificationForm}" onsubmit="validateForm(event)" enctype="multipart/form-data"
+                  th:action="@{/notification/notification-management/send-notification}" th:method="post"></form>
+            <button type="submit" form="sendNotification" class="confirmationScreenButton col-auto">Confirmation Screen
+            </button>
+        </div>
+    </div>
+</div>
+
+
+

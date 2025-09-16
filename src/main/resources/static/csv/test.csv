@@ -1,0 +1,4 @@
+userId, surname , givenName, mailAddress, registrationDate, lastUpdated
+user,Smith,John,ssssss.ssssss@xxxxxxxx.xx,2022-01-01 10:30:00,2022-01-01 10:30:00
+user2,Johnson,Jane,user.user@xxxxxxxx.xx,2022-01-01 10:30:00,2022-01-01 10:30:00
+admin,Brown,Admin,ssssss.ssssss@xxxxxxxx.xx,2022-01-01 10:30:00,2022-01-01 10:30:00

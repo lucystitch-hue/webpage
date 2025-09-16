@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" type="text/css" th:href="@{/fontawesome-free-5.15.3-web/css/fontawesome.min.css}">
+  <script defer th:src="@{/fontawesome-free-5.15.3-web/js/all.js}"></script>
+  <link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css} "/>
+  <link th:href="@{/css/body-notification.css}" rel="stylesheet" />
+  <title>Notification Template</title>
+</head>
+<body id="body" class="push-notification">
+<div class="container-fluid">
+    <th:block th:insert="~{faq/body_faq_mail_success :: body}"></th:block>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</div>
+</body>
+</html>

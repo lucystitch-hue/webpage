@@ -1,0 +1,40 @@
+body {
+    background-color: #F0F0F0;
+}
+
+.logo {
+    height: 150px;
+    filter: invert(1);
+}
+
+.shadow.col-md-5.border {
+    margin-top: 80px;
+    border-radius: 30px;
+    background-color: white;
+}
+
+.about {
+    height: 20px;
+    width: 35px;
+}
+
+button.btn.btn-primary.mb-3.mt-5.mx-auto {
+    background: #007564;
+    color: white;
+    border: none;
+    width: 180px;
+    height:45px;
+    border-radius: 20px !important;
+    font-size: 20px;
+}
+
+input {
+    height: 50px;
+    border: 1px solid !important;
+    border-radius: 0px !important;
+}
+
+b {
+    margin-bottom: -5px;
+    margin-top: 10px;
+}

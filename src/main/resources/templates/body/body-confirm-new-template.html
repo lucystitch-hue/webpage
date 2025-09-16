@@ -1,0 +1,41 @@
+
+<div th:fragment="body" class="col-md-10 p-0">
+    <th:block th:insert="~{fragment/fragment-header-notification :: header}"></th:block>
+
+    <div class="col-md-12 shadow-sm a p-0">
+        <div class="col-md-12 p-4 pb-2 pt-2">
+            <div class="col-md-9 p-0 mx-auto">
+                <label class="title"><b>New Template Confirmation Screen</b></label>
+            </div>
+        </div>
+        <div class="col-md-12 p-5">
+            <div class="col-md-6">
+                <div class="d-flex flex-column bd-highlight m-0 mb-4">
+                    <div class="mt-3">
+                        <label><b>Title</b></label>
+                        <p class="border-secondary border-top pt-4 ps-4" th:text="${newTemplate.titleFormat}"></p>
+                    </div>
+                    <div class="mt-5">
+                        <label><b>Content</b></label>
+                        <p class="border-secondary border-top pt-4 ps-4" style = "word-wrap: break-word;" th:text="${newTemplate.teikeiFormat}"></p>
+                    </div>
+                    <div class="mt-5">
+                        <label><b>Link URL</b></label>
+                        <p class="border-secondary border-top pt-4 ps-4"><a target="_blank" style="color: #0d6efd; text-decoration: underline; word-wrap: break-word !important;" th:href="${newTemplate.linkUrl}" th:text="${newTemplate.linkUrl}"></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input hidden form="createNotification" th:field="${newTemplate.linkUrl}" th:name="linkUrl" type="text" >
+        <textarea hidden form="createNotification" th:name="teiketFormat" th:field="${newTemplate.teikeiFormat}" ></textarea>
+        <input hidden form="createNotification" th:field="${newTemplate.titleFormat}" th:name="titleFormat" type="text" >
+
+        <div class="col-md-12 d-flex justify-content-center gap-5">
+            <a href="javascript:history.back()" class="cancelButton shadow">Return to Input Screen</a>
+            <form hidden id="createNotification"
+                  th:action="@{/notification/notification-template/create-template}" th:method="post"></form>
+            <button onclick="disableButtonTemplate(this)" type="submit" form="createNotification" class="confirmationScreenButton">Save
+            </button>
+        </div>
+    </div>
+</div>

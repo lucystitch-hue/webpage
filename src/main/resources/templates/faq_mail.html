@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <link rel="stylesheet" type="text/css" th:href="@{/fontawesome-free-5.15.3-web/css/fontawesome.min.css}">
+  <script defer th:src="@{/fontawesome-free-5.15.3-web/js/all.js}"></script>
+  <link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css} "/>
+  <link th:href="@{/css/body-notification.css}" rel="stylesheet" />
+  <title>Notification Template</title>
+</head>
+<body id="body" class="push-notification container-fluid p-0">
+<div class="container-fluid p-0">
+    <div class="p-4 p-4 text-center" style="background: #F7F7F7; position: sticky;top: 0;"><b>Contact</b></div>
+    <th:block th:insert="~{faq/body_faq_mail :: body}"></th:block>
+</div>
+<script th:src="@{/js/email.js}"></script>
+<!--<script th:src="@{/js/bootstrap.bundle.min.js}"></script>-->
+<!--  <div th:if="${success != null && success}" class="modal fade p-0" id="reloadModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"-->
+<!--       aria-labelledby="reloadModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog modal-dialog-centered justify-content-center modal-md">-->
+<!--    <div class="modal-content mx-auto">-->
+<!--      <div class="modal-body">-->
+<!--        <div class="row justify-content-center">-->
+<!--          <span id="messageSend" style="color: #000000;font-size: 22px;" class="text-center col-12 p-5 mx-auto">Your inquiry has been <br> sent!</span>-->
+<!--          &lt;!&ndash;                        use data-bs-dismiss="modal" when want close modal&ndash;&gt;-->
+<!--          &lt;!&ndash;                        if header userAgent equal TESTAPP&ndash;&gt;-->
+<!--          <a id="btnUA" style="text-decoration: none;" th:if="${userAgent !=null}" th:href="@{/faq/faq_mail.html}" class="closeButton col-auto mx-auto shadow-none border border-0 rounded-pill" >Close</a>-->
+<!--          &lt;!&ndash;                        else userAgent not equal TESTAPP, it will close modal when click Close&ndash;&gt;-->
+<!--          <a id="btnUA" style="text-decoration: none;" th:if="${userAgent == null }" href="#" class="closeButton col-auto mx-auto shadow-none border border-0 rounded-pill" data-bs-dismiss="modal">Close</a>-->
+<!--        </div>-->
+
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+</div>
+</body>
+</html>

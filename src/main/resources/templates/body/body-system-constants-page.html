@@ -1,0 +1,77 @@
+<div th:fragment="body" class="col-md-10 p-0 m-0">
+	<th:block th:insert="~{fragment/fragment-header-notification :: header}"></th:block>
+
+	<div class="p-5 pb-3 pt-3">
+		<span class="d-flex justify-content-end mb-3">System constants limit: 60 items maximum</span>
+		<table id="data" class="table table-hover shadow-sm border pb-5 m-0">
+			<thead th:if="${countAsys01 >=0}">
+				<tr>
+					<th class="text-center" scope="col">Key Code</th>
+					<th class="text-center" scope="col">Name</th>
+					<th class="text-center" scope="col">Constant Value</th>
+					<th class="text-center" scope="col">Notes</th>
+					<th class="text-center" scope="col">Last Update Date</th>
+				</tr>
+			</thead>
+			<tbody id="myTable" style="background: white;">
+				<tr th:each="i,state:${listAsys01}">
+
+					<td th:onclick="'window.location=\'' + @{/notification/system-constants/edit/{id}(id=${i.id})} + '\''" style="cursor: pointer; padding: 1%;">
+					[(${i.id})]
+					</td>
+
+					<td th:onclick="'location.href=\'' + @{/notification/system-constants/edit/{id}(id=${i.id})} + '\''" style="cursor: pointer; padding: 1%;">
+					[(${i.sys01Name})]
+					</td>
+
+					<td th:onclick="'location.href=\'' + @{/notification/system-constants/edit/{id}(id=${i.id})} + '\''" style="cursor: pointer; padding: 1%;">
+					[(${i.sys01Value})]
+					</td>
+
+					<td th:onclick="'location.href=\'' + @{/notification/system-constants/edit/{id}(id=${i.id})} + '\''" style="cursor: pointer; padding: 1%;">
+					[(${i.sys01Memo})]
+					</td>
+
+					<td th:onclick="'location.href=\'' + @{/notification/system-constants/edit/{id}(id=${i.id})} + '\''" style="cursor: pointer; padding: 1%;">
+					[(${i.updateTimestamp})]
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<nav id="pageable" class=" d-flex justify-content-end pt-3"
+			aria-label="Page navigation example"
+			style="background: white; border: 1px solid gainsboro;">
+			<ul class="pagination justify-content-center border rounded-3 me-5">
+				<li th:if="${currentPage >0}"
+					class="page-item"><a style="color: #007564;"
+					th:href="@{/notification/system-constants}"
+					th:class="${currentPage == 0 ? 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none active' : 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none'}">
+						≪ </a></li>
+				<li class="page-item" th:if="${currentPage > 2}"><span
+					class="page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none">...</span>
+				</li>
+				<th:block th:each="pageNumber : ${pageNumbers}"
+					th:if="${pageNumber >= currentPage - 1 and pageNumber <= currentPage + 3}">
+					<li th:class="${pageNumber == currentPage + 1 ? 'page-item active' : 'page-item'}"><a
+						th:href="@{/notification/system-constants(page=${pageNumber})}"
+						th:class="${pageNumber == currentPage + 1 ? 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none active' : 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none'}">
+							[(${pageNumber})] </a></li>
+				</th:block>
+				<li class="page-item" th:if="${currentPage + 3 < totalPages}">
+					<span
+					class="page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none">...</span>
+				</li>
+				<li class="${currentPage == totalPages - 1 ? 'page-item active' : 'page-item'}" th:if="${currentPage + 3 < totalPages}">
+					<a th:href="@{/notification/system-constants(page=${totalPages})}"
+					th:class="${currentPage == totalPages - 1 ? 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none active' : 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none'}">
+						[(${totalPages})] </a>
+				</li>
+				<li class="page-item"><a th:href="@{/notification/system-constants(page=${currentPage}+2)}"
+					class="page-link border-0 m-2 me-0 p-0 ps-2 pe-3 shadow-none"
+					style="color: #007564;"
+					th:if="${currentPage < totalPages - 1}"> ≫ </a></li>
+			</ul>
+		</nav>
+	</div>
+
+</div>

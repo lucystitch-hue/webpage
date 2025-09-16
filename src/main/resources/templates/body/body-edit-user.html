@@ -1,0 +1,438 @@
+<div th:fragment="body" class="col-md-10 p-0 m-0">
+    <th:block th:insert="~{fragment/fragment-header-home :: header}"></th:block>
+    <div class="container p-0 pt-2 pb-3">
+
+        <div class="d-flex align-items-end flex-column p-0 pt-2">
+            <a style="cursor: pointer;" class="buttonDelete" data-bs-toggle="modal" data-bs-target="#deleteUser">Delete</a>
+            <div  class="modal fade p-0" id="deleteUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                 aria-labelledby="reloadModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered justify-content-center modal-md">
+                    <div class="modal-content mx-auto">
+                        <div class="modal-body text-center">
+                            <img class="mx-auto mb-3" th:src="@{/image/warning.png}">
+                            <b><h5 class="modal-title mx-auto">Do you want to delete this information?</h5></b>
+                            <div class="row justify-content-center">
+                                <span id="messageSend" style="color: #000000;font-size: 20px;" class="text-center col-12 pt-3 pb-3 mx-auto" >Once you click the delete button, it cannot be undone.</span>
+                                <div class="row justify-content-center">
+                                    <a  style="text-decoration: none;" href="#" class="closeButton btn create notification col-md-4" data-bs-dismiss="modal">Cancel</a>
+                                    <a  style="text-decoration: none;" th:href="@{/admin/drop-user/{idUser}(idUser=${detailUser.userId})}" class="ok btn create notification col-md-4" >Delete</a>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container p-0">
+                <div class="row row-cols-2">
+                    <div class="col mt-3 pe-5">
+                        <label>User ID</label>
+                        <input readonly form="putForm" th:field="*{detailUser.userId}" type="text"
+                               class="form-control shadow-none rounded-0 border border-secondary bg-white"
+                               th:value="${detailUser.userId}">
+                    </div>
+                </div>
+                <div class="row row-cols-2">
+                    <!--                    -->
+                    <div class="col mt-3 pe-5">
+                        <label>Email Address</label>
+                        <input oninput="limitInputLength()" id="email" form="putForm" th:field="*{detailUser.email}" type="email" class="form-control shadow-none rounded-0 border border-secondary"
+                               th:value="${detailUser.email}">
+                    </div>
+                    <div class="col mt-3 ps-5">
+                        <label>Password</label>
+                        <input oninput="limitInputLength()" form="putFform" th:field="*{detailUser.password}" type="text"
+                               class="form-control shadow-none rounded-0 border border-secondary"
+                               th:value="${detailUser.password}" id="inputPass" >
+                    </div>
+                    <div class="col mt-3 pe-5">
+                        <label>Date of Birth</label> <input form="putForm"
+							th:field="*{detailUser.birthday}" type="text"
+							class="form-control shadow-none rounded-0 border border-secondary"
+							th:value="${detailUser.birthday}"
+							oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+							onKeyPress="if(this.value.length==8) return false;">
+
+					</div>
+
+					<div class="col mt-3 ps-5">
+						<label>Postal Code </label> <input form="putForm"
+							th:field="*{detailUser.postcode}" type="number"
+							pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==7) return false;" 	
+							oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+							class="form-control shadow-none rounded-0 border border-secondary">
+
+					</div>
+					<!--                    -->
+					<div class="col-md-12 row pe-0 mt-3">
+
+                        <div class="col-md-2 pe-5">
+                            <label>Gender </label>
+                            <select form="putForm" class="shadow-none rounded-0 border border-secondary p-2" th:field="*{detailUser.sex}">
+                                <option class="border-0 p-2 ps-4 pe-4" th:value="'1'" th:text="Male"></option>
+                                <option class="border-0 p-2 ps-4 pe-4" th:value="'2'" th:text="Female"></option>
+                                <option class="border-0 p-2 ps-4 pe-4" th:value="'3'" th:text="Not Selected"></option>
+                            </select>
+                        </div>
+                        <div class="col-md-5 pe-5 ps-0">
+                            <label>Occupation </label>
+                            <select form="putForm" class="shadow-none rounded-0 border border-secondary p-2" th:field="*{detailUser.job}">
+
+                                <option class="border-0 p-2 ps-4 pe-4" th:value="'01'" th:text="Company Employee"></option>
+                                <option class="border-0 p-2 ps-4 pe-4" th:value="'02'" th:text="Civil Servant/Organization Staff"></option>
+                                <option class="border-0 p-2 ps-4 pe-4" th:value="'03'" th:text="Manager/Company Executive"></option>
+                                <option class="border-0 p-2 ps-4 pe-4" th:value="'04'" th:text="Self-employed"></option>
+                                <option class="border-0 p-2 ps-4 pe-4" th:value="'05'" th:text="Freelancer"></option>
+                                <option class="border-0 p-2 ps-4 pe-4" th:value="'06'" th:text="Temporary/Contract Employee"></option>
+                                <option class="border-0 p-2 ps-4 pe-4" th:value="'07'" th:text="Part-time/Seasonal Worker"></option>
+                                <option class="border-0 p-2 ps-4 pe-4" th:value="'08'" th:text="Student"></option>
+                                <option class="border-0 p-2 ps-4 pe-4" th:value="'09'" th:text="Housewife/Househusband"></option>
+                                <option class="border-0 p-2 ps-4 pe-4" th:value="'10'" th:text="Unemployed"></option>
+                                <option class="border-0 p-2 ps-4 pe-4" th:value="'11'" th:text="Other"></option>
+                            </select>
+                        </div>
+                        <div class="col-md-5 ps-0 pe-0">
+                            <label>Horse Racing Starting Year </label>
+                            <select form="putForm" class="shadow-none rounded-0 border border-secondary p-2" th:field="*{detailUser.startYear}">
+                                <th:block th:each="year : ${#numbers.sequence(1945, 2024)}">
+                                    <option class="border-0 p-2 ps-4 pe-4" th:value="${year}" th:text="${year}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                    </div>
+                    <!--                    -->
+                    <div class="col-md-12 row pe-0 mt-3">
+                        <label>Have you ever purchased tickets for central horse racing (TEST) before? (Multiple answers possible)</label>
+                        <div class="m-2 ms-3">
+                            <input form="putForm" class="form-check-input shadow-none rounded-0" type="checkbox" th:name="o0" th:checked="${optionS0}"
+                                   id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Racecourse/Wins cash purchase
+                            </label>
+                        </div>
+                        <div class="m-2 ms-3">
+                            <input form="putForm" class="form-check-input shadow-none rounded-0" type="checkbox" th:name="o1" th:checked="${optionS1}"
+                                   id="defaultCheck2">
+                            <label class="form-check-label" for="defaultCheck2">
+                                Racecourse/Wins UMACA (cashless) purchase
+                            </label>
+                        </div>
+                        <div class="m-2 ms-3">
+                            <input form="putForm" class="form-check-input shadow-none rounded-0" type="checkbox" th:name="o2" th:checked="${optionS2}"
+                                   id="defaultCheck3">
+                            <label class="form-check-label" for="defaultCheck3">
+                                Phone/Internet betting purchase
+                            </label>
+                        </div>
+                        <div class="m-2 ms-3">
+                            <input form="putForm" class="form-check-input shadow-none rounded-0" type="checkbox" th:name="o3" th:checked="${optionS3}"
+                                   id="defaultCheck4">
+                            <label class="form-check-label" for="defaultCheck4">
+                                Requested purchase from friends/acquaintances
+                            </label>
+                        </div>
+                        <div class="m-2 ms-3">
+                            <input form="putForm" class="form-check-input shadow-none rounded-0" type="checkbox" th:name="o4" th:checked="${optionS4}"
+                                   id="defaultCheck5">
+                            <label class="form-check-label" for="defaultCheck5">
+                                Never purchased
+                            </label>
+                        </div>
+                    </div>
+                    <!--                    -->
+                    <div class="col-md-12 row pe-0 mt-3">
+                        <label>What made you want to participate in central horse racing (TEST)? (Multiple answers possible)</label>
+                        <div class="m-2 ms-3">
+                            <input form="putForm" class="form-check-input shadow-none rounded-0" type="checkbox" th:name="o5" th:checked="${optionR0}"
+                                   id="defaultCheck6">
+                            <label class="form-check-label" for="defaultCheck6">
+                                Invited by family
+                            </label>
+                        </div>
+                        <div class="m-2 ms-3">
+                            <input form="putForm" class="form-check-input shadow-none rounded-0" type="checkbox" th:name="o6" th:checked="${optionR1}"
+                                   id="defaultCheck7">
+                            <label class="form-check-label" for="defaultCheck7">
+                                Invited by friends/acquaintances
+                            </label>
+                        </div>
+                        <div class="m-2 ms-3">
+                            <input form="putForm" class="form-check-input shadow-none rounded-0" type="checkbox" th:name="o7" th:checked="${optionR2}"
+                                   id="defaultCheck8">
+                            <label class="form-check-label" for="defaultCheck8">
+                                Horse racing games
+                            </label>
+                        </div>
+                        <div class="m-2 ms-3">
+                            <input form="putForm" class="form-check-input shadow-none rounded-0" type="checkbox" th:name="o8" th:checked="${optionR3}"
+                                   id="defaultCheck9">
+                            <label class="form-check-label" for="defaultCheck9">
+                                Horse racing TV broadcasts
+                            </label>
+                        </div>
+                        <div class="m-2 ms-3">
+                            <input form="putForm" class="form-check-input shadow-none rounded-0" type="checkbox" th:name="o9" th:checked="${optionR4}"
+                                   id="defaultCheck10">
+                            <label class="form-check-label" for="defaultCheck10">
+                                Horse racing commercials/ads
+                            </label>
+                        </div>
+                        <div class="m-2 ms-3">
+                            <input form="putForm" class="form-check-input shadow-none rounded-0" type="checkbox" th:name="o10" th:checked="${optionR5}"
+                                   id="defaultCheck11">
+                            <label class="form-check-label" for="defaultCheck11">
+                                Celebrity influence
+                            </label>
+                        </div>
+                        <div class="m-2 ms-3">
+                            <input form="putForm" class="form-check-input shadow-none rounded-0" type="checkbox" th:name="o11" th:checked="${optionR6}"
+                                   id="defaultCheck12">
+                            <label class="form-check-label" for="defaultCheck12">
+                                Became interested in racehorses
+                            </label>
+                        </div>
+                        <div class="m-2 ms-3">
+                            <input form="putForm" class="form-check-input shadow-none rounded-0" type="checkbox" th:name="o12" th:checked="${optionR7}"
+                                   id="defaultCheck13">
+                            <label class="form-check-label" for="defaultCheck13">
+                                Became interested in jockeys
+                            </label>
+                        </div>
+                        <div class="m-2 ms-3">
+                            <input form="putForm" class="form-check-input shadow-none rounded-0" type="checkbox" th:name="o13" th:checked="${optionR8}"
+                                   id="defaultCheck14">
+                            <label class="form-check-label" for="defaultCheck14">
+                                Previously enjoyed horse racing and wanted to restart
+                            </label>
+                        </div>
+                        <div class="m-2 ms-3">
+                            <input form="putForm" class="form-check-input shadow-none rounded-0" type="checkbox" th:name="o14" th:checked="${optionR9}"
+                                   id="defaultCheck15">
+                            <label class="form-check-label" for="defaultCheck15">
+                                Other
+                            </label>
+                        </div>
+                    </div>
+                    <!--                    -->
+
+                    <!--                    -->
+                    <div class="col-md-12 row row-cols-3 pe-0 mt-5">
+                        <div class="col mt-3">
+                            <label>IPAT Member Number 1</label>
+                            <input readonly maxlength="8" id="ipatId1" type="text" class="form-control shadow-none rounded-0 border border-secondary" form="putForm" th:field="*{detailUser.ipatId1}" th:value="${detailUser.ipatId1}">
+                        </div>
+                        <div class="col mt-3">
+                            <label>IPAT Member Number 2</label>
+                            <input readonly maxlength="8" id="ipatId2" type="text" class="form-control shadow-none rounded-0 border border-secondary" form="putForm" th:field="*{detailUser.ipatId2}" th:value="${detailUser.ipatId2}">
+                        </div>
+                    </div>
+                    <!--                    -->
+
+                    <!--                    -->
+                    <div class="col-md-12 row row-cols-3 pe-0">
+                        <div class="radioButton mt-3">
+                            <input onclick="disableRightRadio()" ondblclick="toggleRadio('flexRadioDefault1')" class="form-check-input" type="radio" id="flexRadioDefault1" form="putForm"  th:name="ysnFlag1" th:checked="${ysnFlag1}">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Member 1 Priority Flag
+                            </label>
+                        </div>
+
+                        <div class="radioButton mt-3">
+                            <input onclick="disableLeftRadio()" ondblclick="toggleRadio('flexRadioDefault2')" class="form-check-input" type="radio" id="flexRadioDefault2" form="putForm" th:name="ysnFlag2" th:checked="${ysnFlag2}">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Member 2 Priority Flag
+                            </label>
+                        </div>
+
+                    </div>
+                    <!--                    -->
+
+                    <!--                    -->
+                    <div class="col-md-12 row row-cols-3 pe-0">
+
+                        <div class="col mt-3">
+                            <label>User Category (Default: 0 Test: 9)</label>
+                            <input type="text" 
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                            onKeyPress="if(this.value.length==1) return false;"
+                            class="form-control shadow-none rounded-0 border border-secondary" 
+                            form="putForm" 
+                            th:field="*{detailUser.userKbn}" 
+                            th:value="${detailUser.userKbn}">
+                        </div>
+
+                        <div class="col mt-3">
+                            <label>UMACA Smart Link Flag</label>
+                            <input type="text" 
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                            onKeyPress="if(this.value.length==1) return false;"
+							class="form-control shadow-none rounded-0 border border-secondary" 
+							form="putForm" 
+							th:field="*{detailUser.umacaFlg}" 
+							th:value="${detailUser.umacaFlg}">
+                        </div>
+                    </div>
+                    <!--                    -->
+                    <div class="col-md-12 row row-cols-3 pe-0">
+                        <div class="col mt-3">
+                            <label>Last Login Date</label>
+                            <input type="text" 
+                            class="form-control shadow-none rounded-0 border border-secondary" 
+                            form="putForm" 
+                            th:field="*{detailUser.latestLogin}" 
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                            onKeyPress="if(this.value.length==12) return false;"
+                            th:value="${detailUser.latestLogin}">
+                        </div>
+
+                        <div class="col mt-3">
+                            <label>User Registration Date</label>
+                            <input type="text" 
+                            class="form-control shadow-none rounded-0 border border-secondary" 
+                            form="putForm" 
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                            onKeyPress="if(this.value.length==8) return false;"
+                            th:field="*{detailUser.initialYmd}" 
+                            th:value="${detailUser.initialYmd}">
+                        </div>
+
+                        <div class="col mt-3">
+                            <label>Last Update Date</label>
+                            <input type="text" 
+                            class="form-control shadow-none rounded-0 border border-secondary" 
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                            onKeyPress="if(this.value.length==12) return false;"
+                            form="putForm" 
+                            th:value="${lastUpdate}">
+                        </div>
+
+                    </div>
+                                        <!--                    -->
+                    <div class="col-md-12 row pe-0 mt-3">
+                        <label>PUSH Notifications</label>
+                        <div class="col-md-12 mt-3">
+                            <label class="col-md-12 row row-cols-4 ms-4 pe-0">Race Information</label>
+                            <div class="col-md-12 row row-cols-4 ms-4 pe-0 border border-2 pb-3 ps-3">
+                                <div class="col mt-3 form-check form-switch">
+                                    <label class="form-check-label">Entry Cancellation</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushTorikeshi}"  th:name="pushTorikeshi" >
+                                </div>
+                                <div class="col mt-3 form-check form-switch">
+                                    <label class="form-check-label">Race Exclusion</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushJogai}"  th:name="pushJogai">
+                                </div>
+                                <div class="col mt-3 form-check form-switch">
+                                    <label class="form-check-label">Jockey Change</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushKisyu}"  th:name="pushKisyu">
+                                </div>
+                                <div class="col mt-3 form-check form-switch">
+                                    <label class="form-check-label">Start Time Change</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushJikoku}"  th:name="pushJikoku">
+                                </div>
+                                <div class="col mt-3 form-check form-switch">
+                                    <label class="form-check-label">Track Condition Change</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushBaba}"  th:name="pushBaba">
+                                </div>
+                                <div class="col mt-3 form-check form-switch">
+                                    <label class="form-check-label">Weather Change</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushWeather}"  th:name="pushWeather">
+                                </div>
+                                <div class="col mt-3 form-check form-switch">
+                                    <label class="form-check-label">GI Race Horse Weight</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushUmaWeight}"  th:name="pushUmaWeight">
+                                </div>
+                                <div class="col mt-3 form-check form-switch">
+                                    <label class="form-check-label">GI Race Payout</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushHarai}"  th:name="pushHarai">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                    -->
+                    <div class="col-md-12 row pe-0 mt-3">
+                        <div class="col-md-12 mt-3">
+                            <label class="col-md-12 row row-cols-4 ms-4 pe-0">Participating Horse Information</label>
+                            <div class="col-md-12 row row-cols-4 ms-4 pe-0 border border-2 pb-3 ps-3">
+                                <div class="col mt-3 form-check form-switch">
+                                    <label class="form-check-label">GI Race Registered Horses</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushUtokubetsu}"  th:name="pushUtokubetsu">
+                                </div>
+                                <div class="col mt-3 form-check form-switch">
+                                    <label class="form-check-label">GI Race Confirmed Participants</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushMokuden}"  th:name="pushMokuden">
+                                </div>
+                                <div class="col mt-3 form-check form-switch">
+                                    <label class="form-check-label">GI Race Gate Order Confirmed</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushYokuden}"  th:name="pushYokuden">
+                                </div>
+                                <div class="col mt-3 form-check form-switch">
+                                        <label class="form-check-label">This Week's Highlights</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushThisWeek}"  th:name="pushThisWeek">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--                    -->
+                    <div class="col-md-12 row pe-0 mt-3">
+                        <div class="col-md-12 mt-3">
+                            <label class="col-md-12 row row-cols-4 ms-4 pe-0">Favorite Horse Information</label>
+                            <div class="col-md-12 row row-cols-4 ms-4 pe-0 border border-2 pb-3 ps-3">
+                                <div class="col mt-3 form-check form-switch">
+                                    <label class="form-check-label">Special Race Registration Info</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushFavTokubetsu}"  th:name="pushFavTokubetsu">
+                                </div>
+                                <div class="col mt-3 form-check form-switch">
+                                    <label class="form-check-label">Race Entry Confirmation Info</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushFavYokuden}"  th:name="pushFavYokuden">
+                                </div>
+                                <div class="col mt-3 form-check form-switch">
+                                    <label class="form-check-label">Race Results Information</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushFavHarai}"  th:name="pushFavHarai">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--                    -->
+                    <div class="col-md-12 row pe-0 mt-3">
+                        <div class="col-md-12 mt-3">
+                            <label class="col-md-12 row row-cols-4 ms-4 pe-0">Favorite Jockey Information</label>
+                            <div class="col-md-12 row row-cols-4 ms-4 pe-0 border border-2 pb-3 ps-3">
+                                <div class="col mt-3 form-check form-switch">
+                                    <label class="form-check-label">This Week's Mounts</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushFavJoc}"  th:name="pushFavJoc">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--                    -->
+                    <div class="col-md-12 row pe-0 mt-3">
+                        <div class="col-md-12 mt-3 mb-5">
+                            <label class="col-md-12 row row-cols-4 ms-4 pe-0">TEST Notifications</label>
+                            <div class="col-md-12 row row-cols-4 ms-4 pe-0 border border-2 pb-3 ps-3">
+                                <div class="col mt-3 form-check form-switch">
+                                    <label class="form-check-label">Promotional Information</label>
+                                    <input onclick="return false;" class="form-check-input" type="checkbox" form="putForm" th:checked="${pushNews}"  th:name="pushNews">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form hidden th:object="${user}" id="putForm" onsubmit="return validateInputPassword(event)"
+                          th:action="@{/admin/edit-user/{idUser}(idUser=${detailUser.userId})}" th:method="post">
+
+                    </form>
+                    <div class="col-md-8 mx-auto d-flex m-5 justify-content-center gap-5">
+                        <button type="submit" form="putForm" class="confirmationScreenButton">Update
+            </button>
+                        <a th:href="@{/admin/user}" class="cancelButton shadow col-auto">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

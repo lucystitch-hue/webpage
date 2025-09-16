@@ -1,0 +1,78 @@
+
+html, body {
+  overflow-x: hidden;
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('font/Helvetica.woff2') format('woff2');
+  /* Add additional font weights and styles if needed */
+}
+
+body.push-notification {
+    font-family: "Hiragino Kaku Gothic Pro", sans-serif;
+    font-style: normal;
+    font-size: unset;
+    color: #222222;
+    background-color: white;
+}
+
+label {
+    color: #007564;
+    margin-bottom: 8px;
+    font-family: "Hiragino Kaku Gothic Pro", sans-serif;
+}
+textarea.form-control.shadow-none.border.border-2 {
+    border-radius: 20px;
+}
+
+.form-control.shadow-none.rounded-0.border.border-2.rounded-pill {
+    height: 45px;
+}
+
+ button.form-control.shadow-none.border.border-0.rounded-pill {
+     height: 50px;
+     background: #EA6503;
+     color: white;
+ }
+
+ input, textarea,select#osSelect , select#osSelect option{
+     font-family: 'Helvetica', sans-serif;
+ }
+
+ select#userIdSelect, select#userIdSelect option, select#userIdSelect2, select#userIdSelect2 option{
+    font-family: "Hiragino Kaku Gothic Pro", sans-serif;
+ }
+
+ .modal-content {
+     width: 80% !important;
+ }
+ .modal-content.mx-auto {
+     border-radius: 20px;
+ }
+
+a.closeButton {
+    background: #EA6503;
+    padding: 13px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-bottom: 30px;
+    color: white;
+}
+
+a#btnUA {
+    background: #EA6503;
+    padding: 15px;
+    margin-bottom: 30px;
+    color: white;
+}
+
+img.svgdown {
+    position: absolute;
+    margin-top: -25px;
+    right: 39px;
+}
+.col.mt-4 {
+    position: relative;
+    display: inline-block;
+}

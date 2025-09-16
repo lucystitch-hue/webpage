@@ -1,0 +1,75 @@
+<div th:fragment="table" class="d-flex flex-column p-0 mt-4" th:if="${listUser != null}">
+
+    <table id="data" class="table table-hover shadow-sm border mb-2">
+        <thead>
+        <tr th:if="${countUser >=0}">
+            <th class="text-center" scope="col">User ID</th>
+            <th class="text-center" scope="col">Email Address</th>
+            <th class="text-center" scope="col">User Registration Date</th>
+            <th class="text-center" scope="col">Last Login Date/Time</th>
+        </tr>
+        </thead>
+        <tbody id="myTable" >
+        <tr th:each="i,state:${listUser}">
+
+                <td th:onclick="'location.href=\'' + @{/admin/user/{userId}(userId=${i.userId})} + '\''"
+                    style="cursor: pointer;">
+                    [(${i.userId})]
+                </td>
+
+                <td th:onclick="'location.href=\'' + @{/admin/user/{userId}(userId=${i.userId})} + '\''"
+                    style="cursor: pointer;">
+                    [(${i.email})]
+                </td>
+
+                <td th:onclick="'location.href=\'' + @{/admin/user/{userId}(userId=${i.userId})} + '\''"
+                    style="cursor: pointer;">
+                    [(${i.initialYmd})]
+                </td>
+
+                <td th:onclick="'location.href=\'' + @{/admin/user/{userId}(userId=${i.userId})} + '\''"
+                    style="cursor: pointer;">
+                    [(${i.latestLogin})]
+                </td>
+
+        </tr>
+        </tbody>
+    </table>
+	<nav id="pageable" class=" d-flex justify-content-end pt-3"
+		aria-label="Page navigation example"
+		style="background: white; border: 1px solid gainsboro;">
+		<ul class="pagination justify-content-center border rounded-3 me-5">
+			<li th:if="${currentPage >0}" class="page-item"><a
+				style="color: #007564;"
+				th:href="@{/admin/user(keyWord=${keyWord},page=1)}"
+				th:class="${currentPage == 0 ? 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none active' : 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none'}">
+					≪ </a></li>
+			<li class="page-item" th:if="${currentPage > 2}"><span
+				class="page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none">...</span>
+			</li>
+			<th:block th:each="pageNumber : ${pageNumbers}"
+				th:if="${pageNumber >= currentPage - 1 and pageNumber <= currentPage + 3}">
+				<li
+					th:class="${pageNumber == currentPage + 1 ? 'page-item active' : 'page-item'}"><a
+					th:href="@{/admin/user(keyWord=${keyWord},page=${pageNumber})}"
+					th:class="${pageNumber == currentPage + 1 ? 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none active' : 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none'}">
+						[(${pageNumber})] </a></li>
+			</th:block>
+			<li class="page-item" th:if="${currentPage + 3 < totalPages}"><span
+				class="page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none">...</span>
+			</li>
+			<li
+				class="${currentPage == totalPages - 1 ? 'page-item active' : 'page-item'}"
+				th:if="${currentPage + 3 < totalPages}"><a
+				th:href="@{/admin/user(keyWord=${keyWord},page=${totalPages})}"
+				th:class="${currentPage == totalPages - 1 ? 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none active' : 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none'}">
+					[(${totalPages})] </a></li>
+			<li class="page-item"><a
+				th:href="@{/admin/user(keyWord=${keyWord},page=${currentPage}+2)}"
+				class="page-link border-0 m-2 me-0 p-0 ps-2 pe-3 shadow-none"
+				style="color: #007564;" th:if="${currentPage < totalPages - 1}">
+					≫ </a></li>
+		</ul>
+	</nav>
+
+</div>

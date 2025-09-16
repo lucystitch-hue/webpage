@@ -1,0 +1,32 @@
+<div th:fragment="menu" class="col-md-2 pe-0 ps-0 d-grid shadow ">
+
+	<ul class="nav flex-column">
+		<li class="nav-item mt-4 mb-5 p-0 d-grid"><img
+			class="logo mx-auto mb-3" th:src="@{/image/logo.png}">
+			<p class="form-signin-heading mx-auto text-center">
+				<b>Horse Racing App Management</b>
+			</p></li>
+
+		<li class="nav-item mt-5 p-0 d-grid"><a
+			th:href="@{/notification/notification-management}" class="p-3 a">
+				 Notification Management 
+		</a></li>
+
+		<li class="nav-itemp-0 d-grid"><a
+			th:href="@{/notification/notification-template}" class="p-3 b">  Notification Template 
+		</a></li>
+
+		<li class="nav-itemp-0 d-grid mt-5"><a
+			th:href="@{/notification/urgent-notice}" class="p-3 c"> 
+					Urgent Notice  </a></li>
+
+		<li class="nav-itemp-0 d-grid"><a
+			th:href="@{/notification/featured-races-overseas}" class="p-3 d">
+				Featured Overseas Races
+		</a></li>
+
+		<li class="nav-itemp-0 d-grid"><a th:href="@{/notification/system-constants}" class="p-3 e">  System Constants
+			 </a></li>
+	</ul>
+
+</div>
