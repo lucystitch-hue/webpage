@@ -1,0 +1,38 @@
+.col-md-12.p-2.m-0.align-self-start {
+    background-color: white;
+        position: sticky;
+        top: 0;
+}
+i.fas.fa-user.col.align-self-center.p-0 {
+    font-size: 20px;
+}
+.rounded-circle {
+    height: 50px;
+    width: 50px;
+    background-color: #007564;
+}
+
+i.fas.fa-user.col.align-self-center.p-0 {
+    text-align: center;
+}
+.p-2.w-50.bd-highlight.align-self-center {
+    margin-right: 25%;
+    margin-left: 20%;
+    font-size: x-large;
+}
+
+.col-md-1.p-2.flex-shrink-1.bd-highlight {
+    padding-left: 5% !important;
+}
+
+@media screen and (max-width: 600px) {
+  .col-md-12.p-2.m-0.align-self-start {
+      width: -webkit-fill-available;
+  }
+  .p-2.w-50.bd-highlight {
+      width: auto !important;
+  }
+  .col-md-1.p-2.flex-shrink-1.bd-highlight {
+      margin-left: 18%;
+  }
+}

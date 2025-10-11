@@ -1,0 +1,95 @@
+<div th:fragment="body" class="row p-5 pt-2 flex-column">
+
+    <div class="col mt-4">
+        <b><label>Email Address</label><span class="text-danger">*</span></b>
+        <input form="sendInquiry" type="text" id="emailInput" th:value="${email}" th:name="email"
+               class="form-control shadow-none rounded-0 border border-2 rounded-pill" >
+        <span id="emailError" class="text-danger"></span>
+    </div>
+
+    <div class="col mt-4">
+        <b><label>Category</label><span class="text-danger">*</span></b>
+        <select form="sendInquiry" id="userIdSelect" th:name="category"
+                class="form-control shadow-none rounded-0 border border-2 rounded-pill">
+            <option value="" th:selected="(${category}==0)">-</option>
+            <option th:selected="(${category}==1)" th:value="App Installation/Deletion">App Installation/Deletion</option>
+            <option th:selected="(${category}==2)" th:value="Registration/Registration Information Change">Registration/Registration Information Change</option>
+            <option th:selected="(${category}==3)" th:value="Race Card/Odds etc.">Race Card/Odds etc.</option>
+            <option th:selected="(${category}==4)"  th:value="Race Live Video">Race Live Video</option>
+            <option th:selected="(${category}==5)" th:value="Other Videos">Other Videos</option>
+            <option th:selected="(${category}==6)" th:value="Net Voting Linkage">Net Voting Linkage</option>
+            <option th:selected="(${category}==7)" th:value="Information Menu">Information Menu</option>
+            <option th:selected="(${category}==8)" th:value="Notifications/Notification Settings">Notifications/Notification Settings</option>
+            <option th:selected="(${category}==9)" th:value="Betting Ticket Memorial">Betting Ticket Memorial</option>
+            <option th:selected="(${category}==10)" th:value="Other">Other</option>
+        </select>
+        <img class="svgdown" src="/WEB/image/dropdown.png">
+        <span id="userIdError" class="text-danger"></span>
+    </div>
+
+    <div class="col mt-4">
+        <b><label>Device Used</label><span  class="text-danger">*</span></b>
+        <select form="sendInquiry" id="userIdSelect2" th:name="device"
+                class="form-control shadow-none rounded-0 border border-2 rounded-pill">
+            <option value="">-</option>
+            <option th:selected='${device == "Smartphone"}' th:value="Smartphone">Smartphone</option>
+        </select>
+        <img class="svgdown" src="/WEB/image/dropdown.png">
+        <span id="userId2Error" class="text-danger"></span>
+    </div>
+
+    <div class="col mt-4">
+        <b><label>OS Used</label><span class="text-danger">*</span></b>
+        <select form="sendInquiry" id="osSelect" th:name="system"
+                class="form-control shadow-none rounded-0 border border-2 rounded-pill">
+            <option value="">-</option>
+            <option th:selected='${system == "iOS17"}'  th:value="iOS17">iOS17</option>
+            <option th:selected='${system == "iOS16"}'  th:value="iOS16">iOS16</option>
+            <option th:selected='${system == "iOS15"}'  th:value="iOS15">iOS15</option>
+            <option th:selected='${system == "iOS14-earlier"}'  th:value="iOS14-earlier">iOS14 or earlier</option>
+            <option th:selected='${system == "Android14"}'  th:value="Android14">Android14</option>
+            <option th:selected='${system == "Android13"}'  th:value="Android13">Android13</option>
+            <option th:selected='${system == "Android12"}'  th:value="Android12">Android12</option>
+            <option th:selected='${system == "Android11"}'  th:value="Android11">Android11</option>
+            <option th:selected='${system == "Android10"}'  th:value="Android10">Android10</option>
+            <option th:selected='${system == "Android9-earlier"}'  th:value="Android9-earlier">Android9 or earlier</option>
+        </select>
+        <img class="svgdown" src="/WEB/image/dropdown.png">
+        <span id="osError" class="text-danger"></span>
+    </div>
+
+    <div class="col mt-4">
+        <b><label>Device Name (Model/Type Number)</label></b>
+        <input form="sendInquiry" type="text" th:value="${steelSueName}" th:name="steelSueName"
+               class="form-control shadow-none rounded-0 border border-2 rounded-pill">
+    </div>
+
+    <div class="col mt-4">
+        <b><label>App Version</label></b>
+        <input form="sendInquiry" type="text" th:value="${africaVersion}" th:name="africaVersion"
+               class="form-control shadow-none rounded-0 border border-2 rounded-pill">
+    </div>
+
+    <div class="col mt-4">
+        <b><label>Inquiry Content (up to 600 characters)</label><span class="text-danger">*</span></b>
+        <textarea form="sendInquiry" maxlength="600" id="messInput" th:value="${content}" th:name="content" class="form-control shadow-none border border-2"
+                  style="height: 200px; resize: none;"></textarea>
+        <span id="messError" class="text-danger"></span>
+    </div>
+
+    <div class="col my-4">
+        <form hidden id="sendInquiry" onsubmit="return validateForm(event)"
+              th:action="@{/faq/faq_mail.html}" th:method="post"></form>
+        <button id="submitSendInquiry" type="submit" form="sendInquiry" class="form-control shadow-none border border-0 rounded-pill">Send
+        </button>
+    </div>
+    <div class="col p-0 m-0 mb-4 mt-4">
+        
+</br>
+                <p>After submission, we will send an automatic email to notify you of receipt. If you don't receive this email, possible causes include "incorrect email address," "sorting to spam folder," or "reception settings." Please configure your settings to receive emails from "@localhost".
+            We may not be able to reply to opinions and requests.
+        </p>
+    </div>
+
+</div>
+

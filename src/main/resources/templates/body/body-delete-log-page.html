@@ -1,0 +1,66 @@
+<div th:fragment="body" class="col-md-10 p-0 m-0">
+	<th:block th:insert="~{fragment/fragment-header-home :: header}"></th:block>
+
+	<div class="p-5 pb-3 pt-3">
+
+		<table id="data" class="table table-hover shadow-sm border pb-5 m-0">
+			<thead th:if="${countLog >=0}">
+				<tr>
+					<th class="text-center" scope="col">File Name</th>
+					<th class="text-center" scope="col">Download</th>
+					
+				</tr>
+			</thead>
+			<tbody id="myTable" style="background: white;">
+    <tr th:each="i,state:${listLog}">
+        <td style="cursor: pointer; padding: 1%;">
+            <span th:if="${i.contains('_Pending')}" th:text="${i.replace('_Pending', '.csv')}"></span>
+            <span th:unless="${i.contains('_Pending')}">[(${i})].csv</span>
+        </td>
+        <td th:if="${i.contains('_Pending')}">
+            <img src="@{/image/down.png}" style="filter: grayscale(1);" th:src="@{/image/down.png}">
+        </td>
+        <td th:unless="${i.contains('_Pending')}" th:onclick="'location.href = \'' + @{logTemporaryUser-download/{id}(id=${i})} + '\''"
+            style="cursor: pointer; padding: 1%;">
+            <img src="@{/image/down.png}" th:src="@{/image/down.png}">
+        </td>
+    </tr>
+</tbody>
+
+		</table>
+		<nav id="pageable" class=" d-flex justify-content-end pt-3"
+			aria-label="Page navigation example"
+			style="background: white; border: 1px solid gainsboro;">
+			<ul class="pagination justify-content-center border rounded-3 me-5">
+				<li th:if="${currentPage >1}"
+					class="page-item"><a style="color: #007564;"
+					th:href="@{/admin/deleteLog}"
+					th:class="${currentPage == 0 ? 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none active' : 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none'}">
+						≪ </a></li>
+				<li class="page-item" th:if="${currentPage > 2}"><span
+					class="page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none">...</span>
+				</li>
+				<th:block th:each="pageNumber : ${pageNumbers}"
+					th:if="${pageNumber >= currentPage - 1 and pageNumber <= currentPage + 3}">
+					<li th:class="${pageNumber == currentPage + 1 ? 'page-item active' : 'page-item'}"><a
+						th:href="@{/admin/deleteLog(page=${pageNumber})}"
+						th:class="${pageNumber == currentPage + 1 ? 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none active' : 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none'}">
+							[(${pageNumber})] </a></li>
+				</th:block>
+				<li class="page-item" th:if="${currentPage + 3 < totalPages}">
+					<span
+					class="page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none">...</span>
+				</li>
+				<li class="${currentPage == totalPages - 1 ? 'page-item active' : 'page-item'}" th:if="${currentPage + 3 < totalPages}">
+					<a th:href="@{/admin/deleteLog(page=${totalPages})}"s
+					th:class="${currentPage == totalPages - 1 ? 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none active' : 'page-link border-0 m-2 me-0 p-0 ps-2 pe-3 border-end shadow-none'}">
+						[(${totalPages})] </a>
+				</li>
+				<li class="page-item"><a th:href="@{/admin/deleteLog(page=${currentPage}+2)}"
+					class="page-link border-0 m-2 me-0 p-0 ps-2 pe-3 shadow-none"
+					style="color: #007564;" th:if="${currentPage < totalPages - 1}"> ≫ </a></li>
+			</ul>
+		</nav>
+	</div>
+
+</div>

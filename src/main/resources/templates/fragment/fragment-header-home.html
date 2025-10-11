@@ -1,0 +1,18 @@
+<div th:fragment="header" class="col-md-12 p-2 m-0 align-self-start shadow-sm">
+    <div class=" p-0 m-1 d-flex bd-highlight">
+        <div class="p-2 w-50 bd-highlight"><b>[(${header})] </b></div>
+        <div class="col-auto p-2 flex-shrink-1 bd-highlight d-flex ">
+            <a class="my-auto fs-6 col-auto me-3" th:href="@{/admin/logout}">
+                <img class="logoLogout me-1" th:src="@{/image/logout.png}">Logout</a>
+            <div class="dropdown ">
+                <button class="btn shadow-none" id="iconUser" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="rounded-circle row">
+                        <svg class="svg-inline--fa fa-user fa-w-14 col align-self-center p-0" style="color: #ffffff;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" role="img" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg>
+                    </div>
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+</div>

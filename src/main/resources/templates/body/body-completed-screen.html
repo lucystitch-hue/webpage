@@ -1,0 +1,16 @@
+<div th:fragment="body" class="col-md-10 p-0 m-0">
+    <th:block th:insert="~{fragment/fragment-header-notification :: header}"></th:block>
+
+    <div class="col-md-12 a p-0 pe-5 ps-5 m-0">
+        <div class="col-md-12 pt-5 ps-5">
+            <div class="d-flex align-items-end p-0 pt-2 row">
+                <div class="container p-0 col-md-12 ps-3 mb-3">
+                    <div class="row row-cols-2">
+                        <label class="form-check-label col pt-4 pb-4 fs-5" th:text="${result}"> </label>
+                    </div>
+                </div>
+                <a th:href="@{/notification/notification-management}" class="confirmationScreenButton col-auto">Continue Creating</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" type="text/css" th:href="@{/fontawesome-free-5.15.3-web/css/fontawesome.min.css}">
+  <script defer th:src="@{/fontawesome-free-5.15.3-web/js/all.js}"></script>
+  <link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css} "/>
+  <link th:href="@{/css/header.css}" rel="stylesheet" />
+  <link th:href="@{/css/menu.css}" rel="stylesheet" />
+  <link th:href="@{/css/body.css}" rel="stylesheet" />
+  <title>Notification Template</title>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <th:block th:insert="~{fragment/fragment-menu-app-notification :: menu}"></th:block>
+    <th:block th:insert="~{body/body-notification-template :: body}"></th:block>
+
+  </div>
+</div>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/menu.js}"></script>
+<script th:src="@{/js/body.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+  <div th:if="${message != null}" class="modal fade p-0" id="reloadModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+       aria-labelledby="reloadModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered justify-content-center modal-md">
+    <div class="modal-content mx-auto">
+      <div class="modal-body text-center">
+        <img class="mx-auto mb-3" th:src="@{/image/warning.png}">
+        <b><h5 class="modal-title mx-auto">New Registration Error</h5></b>
+        <div class="row justify-content-center">
+          <span id="messageSend" style="color: #000000;font-size: 20px;" class="text-center col-12 pt-3 pb-3 mx-auto" th:text="${message}"></span>
+
+          <a id="closeBtn" style="text-decoration: none;" href="#" class="closeButton btn create notification" data-bs-dismiss="modal">Close</a>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+</html>

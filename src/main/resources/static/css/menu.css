@@ -1,0 +1,47 @@
+body {
+    background-color: #F0F0F0;
+}
+
+.col-md-2.pe-0.ps-0.d-grid.shadow {
+    background-color: white;
+    border-right: 1.9px solid #0000001c;
+    height: 100vh;
+    overflow: auto;
+    position: sticky;
+    top: 0;
+}
+@media screen and (max-width: 600px) {
+  .col-md-2.pe-0.ps-0.d-grid.shadow {
+    width: min-content;
+  }
+}
+
+a {
+    color: black;
+    text-align: center;
+    text-decoration: none;
+}
+
+.logo {
+    height: 100px;
+    filter: invert(1);
+}
+
+a.p-3.a:hover,
+a.p-3.b:hover,
+a.p-3.c:hover,
+a.p-3.d:hover,
+a.p-3.e:hover
+{
+    color: white;
+    background-color: #007564;
+}
+
+a.p-3.a.active,
+a.p-3.b.active,
+a.p-3.c.active,
+a.p-3.d.active,
+a.p-3.e.active{
+    color: white;
+    background-color: #007564;
+}

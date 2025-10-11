@@ -1,0 +1,24 @@
+<div th:fragment="body" class="row p-4 flex-column">
+    <div class="col-auto mx-auto mt-5 mb-5">
+        <b><p>Your inquiry has been sent</p></b>
+    </div>
+<p>We have sent an automatic reply email to the following email address regarding your inquiry.</p>
+    <p style="text-align: center; word-wrap: break-word;" >[(${email})]</p>
+    <p style="color: red;">If you haven't received the automatic reply email, you may not be able to receive responses from support.</p>
+    <p>If you don't receive it, please take the following steps and contact us again.</p>
+    <p>(1) Check if the email address is correct</br>
+(2) Check if it's in your spam folder</br>
+(3) Add "@localhost" to your email security settings' receiving list</p>
+    <p>※ We may not be able to respond to some inquiries depending on their content.</p>
+    <div class="col-12 row mx-auto text-center">
+        <a id="btnUA" style="text-decoration: none;" th:if="${userAgent !=null}" th:href="@{/faq/faq_mail.html}" class="col-12 mx-auto shadow-none border border-0 rounded-pill" >Close</a>
+        <!--                        else userAgent not equal TESTAPP, it will close modal when click Close-->
+        <a id="btnUA" style="text-decoration: none;" th:if="${userAgent == null }" href="#" class="col-12 mx-auto shadow-none border border-0 rounded-pill" data-bs-dismiss="modal">Close</a>
+    </div>
+    <div class="col p-0 m-0 mb-4 mt-5">
+
+                
+    </div>
+
+</div>
+
